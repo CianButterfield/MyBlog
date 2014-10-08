@@ -1,0 +1,65 @@
+﻿@model MyBlog.Models.Registration
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+<!-- step 1. add the enctype attribute to the form tag using the value "multipart/form-data" -->
+<form action="~/Account/Register" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Registration</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.UserName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.UserName)
+            @Html.ValidationMessageFor(model => model.UserName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PasswordConfirm)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PasswordConfirm)
+            @Html.ValidationMessageFor(model => model.PasswordConfirm)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ImageURL)
+        </div>
+        <div class="editor-field">
+            <!-- step 2. use this to upload a file-->
+            <input type="file" name="ImageURL" id="ImageURL" />
+            @Html.ValidationMessageFor(model => model.ImageURL)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+</form>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
